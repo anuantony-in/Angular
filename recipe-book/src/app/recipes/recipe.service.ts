@@ -11,7 +11,7 @@ export class RecipeService {
 
   recipeSelected = new EventEmitter<Recipe>();
 
-  private recipes:Recipe[] = [
+/*   private recipes:Recipe[] = [
     new Recipe('Chicken Biriyani',
     'Indian/Arabic food made using rice & chicken',
     'https://images.t-online.de/2021/06/90189092v2/0x92:1773x997/fit-in/768x0/biryani-das-reisgericht-ist-eines-der-bekanntesten-indischen-gerichte.jpg',
@@ -28,9 +28,16 @@ export class RecipeService {
       new Ingredient('Oil',500),
       new Ingredient('Chicken',1000),
       new Ingredient('All purpose flour',100)
-    ])];
+    ])]; */
 
+    private recipes:Recipe[] = [];
+    
     constructor(private slService:ShoppingListService){}
+
+    setRecipes(recipes: Recipe[]) {
+      this.recipes = recipes;
+      this.recipesChanged.next(this.recipes.slice());
+    }
 
     getRecipes () {
       return this.recipes.slice();
